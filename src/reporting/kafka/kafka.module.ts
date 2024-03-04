@@ -1,6 +1,6 @@
 import { Kafka } from 'kafkajs';
 import { DynamicModule, Module } from '@nestjs/common';
-import { KafkaService } from './kafka.service';
+import { KafkaConsumerService } from './kafka-consumer.service';
 
 export type KafkaConfig = {
   clientId: string;
@@ -23,12 +23,12 @@ export class KafkaModule {
             }),
         },
         {
-          provide: KafkaService,
-          useFactory: (kafka: Kafka) => new KafkaService(kafka),
+          provide: KafkaConsumerService,
+          useFactory: (kafka: Kafka) => new KafkaConsumerService(kafka),
           inject: [Kafka],
         },
       ],
-      exports: [KafkaService],
+      exports: [KafkaConsumerService],
     };
   }
 }

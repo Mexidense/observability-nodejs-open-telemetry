@@ -2,7 +2,7 @@ import { Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import { Kafka, Producer } from 'kafkajs';
 
 @Injectable()
-export class KafkaService implements OnModuleInit, OnModuleDestroy {
+export class KafkaProducerService implements OnModuleInit, OnModuleDestroy {
   constructor(
     private readonly kafka: Kafka,
     private readonly producer: Producer | null = null,

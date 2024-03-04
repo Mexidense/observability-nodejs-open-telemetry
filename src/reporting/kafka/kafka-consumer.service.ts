@@ -1,7 +1,7 @@
 import { OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import { Consumer, EachMessagePayload, Kafka } from 'kafkajs';
 
-export class KafkaService implements OnModuleInit, OnModuleDestroy {
+export class KafkaConsumerService implements OnModuleInit, OnModuleDestroy {
   constructor(
     private readonly kafka: Kafka,
     private readonly consumer: Consumer | null = null,
