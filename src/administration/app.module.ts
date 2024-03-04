@@ -1,8 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { KafkaModule } from './kafka/kafka.module';
-import { KafkaService } from './kafka/kafka.service';
 
 @Module({
   imports: [
@@ -12,12 +10,6 @@ import { KafkaService } from './kafka/kafka.service';
     }),
   ],
   controllers: [AppController],
-  providers: [
-    {
-      provide: AppService,
-      useFactory: (kafkaService: KafkaService) => new AppService(kafkaService),
-      inject: [KafkaService],
-    },
-  ],
+  providers: [],
 })
 export class AppModule {}
