@@ -4,7 +4,7 @@ import { BullMqModule } from './bullmq/bullmq.module';
 import { EachMessagePayload } from 'kafkajs';
 import { KafkaConsumerService } from './kafka/kafka-consumer.service';
 import { AddJobBullMqService } from './bullmq/add-job.bullmq.service';
-import { RequestReportDto } from 'src/request-report.dto';
+import { RequestReportDto } from 'src/_request-report.dto';
 
 @Module({
   imports: [

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Kafka, Producer } from 'kafkajs';
-import { RequestReportDto } from 'src/request-report.dto';
+import { RequestReportDto } from 'src/_request-report.dto';
 
 @Injectable()
 export class KafkaProducerService {

@@ -1,6 +1,6 @@
 import { Queue } from 'bullmq';
 import { BullMqConfig } from './bullmq.module';
-import { RequestReportDto } from 'src/request-report.dto';
+import { RequestReportDto } from 'src/_request-report.dto';
 
 export class AddJobBullMqService {
   private queue: Queue;

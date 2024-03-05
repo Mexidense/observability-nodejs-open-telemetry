@@ -1,6 +1,6 @@
 import { Controller, Body, HttpCode, Post } from '@nestjs/common';
 import { KafkaProducerService } from './kafka/kafka-producer.service';
-import { RequestReportDto } from 'src/request-report.dto';
+import { RequestReportDto } from 'src/_request-report.dto';
 
 @Controller('request-report')
 export class AppController {
