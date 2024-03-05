@@ -1,18 +1,5 @@
 version: "3"
 services:
-  kafka-ui:
-    image: provectuslabs/kafka-ui:latest
-    ports:
-      - '8080:8080'
-    restart: always
-    depends_on:
-      - zookeeper
-      - kafka
-    environment:
-      KAFKA_CLUSTERS_0_NAME: local
-      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
-      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
-
   zookeeper:
     image: bitnami/zookeeper:3.6
     environment:
@@ -49,3 +36,21 @@ services:
     deploy:
       restart_policy:
         condition: on-failure
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    ports:
+      - '8080:8080'
+    restart: always
+    depends_on:
+      - zookeeper
+      - kafka
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"

@@ -1,5 +1,6 @@
 import { Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import { Kafka, Producer } from 'kafkajs';
+import { RequestReportDto } from 'src/request-report.dto';
 
 @Injectable()
 export class KafkaProducerService implements OnModuleInit, OnModuleDestroy {
@@ -10,16 +11,16 @@ export class KafkaProducerService implements OnModuleInit, OnModuleDestroy {
     this.producer = this.kafka.producer();
   }
 
-  async pushMessage(reportType: string, requestedBy: string): Promise<void> {
-    const messageToPush = {
-      reportType,
-      requestedBy,
-    };
+  async pushMessage(requestReport: RequestReportDto): Promise<void> {
+    console.log(
+      `[${new Date().toISOString()}][Kafka] Pusing message...`,
+      requestReport,
+    );
 
     await this.producer
       .send({
         topic: 'administration-service.v1.request-report',
-        messages: [{ value: JSON.stringify(messageToPush) }],
+        messages: [{ value: JSON.stringify(requestReport) }],
       })
       .catch((e) => console.error(e.message, e));
   }

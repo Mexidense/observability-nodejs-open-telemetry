@@ -1,5 +1,6 @@
 import { Controller, Body, HttpCode, Post } from '@nestjs/common';
 import { KafkaProducerService } from './kafka/kafka-producer.service';
+import { RequestReportDto } from 'src/request-report.dto';
 
 @Controller('request-report')
 export class AppController {
@@ -10,9 +11,13 @@ export class AppController {
   async requestReport(
     @Body() request: { reportType: string; requestedBy: string },
   ): Promise<void> {
+    console.info(
+      `[${new Date().toISOString()}][HTTP] Processing request...`,
+      request,
+    );
+
     await this.kafkaProducerService.pushMessage(
-      request.reportType,
-      request.requestedBy,
+      new RequestReportDto(request.reportType, request.requestedBy),
     );
   }
 }
