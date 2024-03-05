@@ -1,5 +1,5 @@
 {
-  "name": "observability-example",
+  "name": "reporting-service",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -8,11 +8,16 @@
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "administration": "node dist/administration/main",
-    "administration:dev": "nest start --config _administration.json --watch",
-    "reporting": "node dist/reporting/main",
-    "reporting:dev": "nest start --config _reporting.json --watch"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
